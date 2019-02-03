@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">VendingMachine</string>
+    <string name="your_money">Your money</string>
+    <string name="count_example">10 pieces</string>
+    <string name="tens">Ten coins</string>
+    <string name="fives">Five coins</string>
+    <string name="two_coins">Two coins</string>
+    <string name="one_coins">One coins</string>
+    <string name="cup_of_tea_10_portions">Buy a cup of Tea - 13 rub</string>
+    <string name="your_drinks">Your drinks</string>
+    <string name="juices">Juices</string>
+    <string name="coffies_with_milk">Coffies with milk</string>
+    <string name="coffies">Coffies</string>
+    <string name="buy_a_cup_of_a_juice_13_rub_10_portions">Buy a cup of a Juice - 13 rub(10 portions)</string>
+    <string name="buy_a_cup_of_a_coffie_with_milk_13_rub_10_portions">Buy a cup of a Coffie with milk - 13 rub</string>
+    <string name="buy_a_cup_of_a_coffie_13_rub_10_portions">Buy a cup of a Coffie - 13 rub</string>
+    <string name="vending_money">Vending money</string>
+    <string name="_3999_rubles">3999 rubles</string>
+    <string name="you_ve_incerted">You\'ve incerted:</string>
+    <string name="incert_2_rub">Incert 2 rub</string>
+    <string name="incert_5_rub">Incert 5 rub</string>
+    <string name="incert_1_rub">Incert 1 rub</string>
+    <string name="ten_portions">10 portions</string>
+    <string name="get_change">Get change</string>
+    <string name="incert_10_rub">Incert 10 rub</string>
+    <string name="teas">Teas</string>
+</resources>
