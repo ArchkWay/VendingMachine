@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+   <TextView
+       android:id="@+id/tvSetAmountVMOnes"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       android:text="@string/enter_amount_vm_ones"
+       />
+    <Spinner
+        android:id="@+id/spSettingsOnes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/amount_options"
+        app:layout_constraintTop_toTopOf="@id/tvSetAmountVMOnes"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvSetAmountVMTwos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_amount_vm_twos"
+        app:layout_constraintTop_toBottomOf="@id/tvSetAmountVMOnes"
+        app:layout_constraintBottom_toTopOf="@id/tvSetAmountVMFives"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Spinner
+        android:id="@+id/spSettingsTwos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/amount_options"
+        app:layout_constraintTop_toTopOf="@+id/tvSetAmountVMTwos"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/tvSetAmountVMFives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_amount_vm_fives"
+        app:layout_constraintTop_toBottomOf="@id/tvSetAmountVMTwos"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Spinner
+        android:id="@+id/spSettingsFives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/amount_options"
+        app:layout_constraintTop_toTopOf="@id/tvSetAmountVMFives"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/tvSetAmountVMTens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_amount_vm_tens"
+        app:layout_constraintTop_toBottomOf="@id/tvSetAmountVMFives"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Spinner
+        android:id="@+id/spSettingsTens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/amount_options"
+        app:layout_constraintTop_toTopOf="@id/tvSetAmountVMTens"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>
