@@ -1,5 +1,6 @@
 package com.example.archek.vendingmachine;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -129,6 +130,7 @@ public class MainFragment extends Fragment{
         btnInsertTen = view.findViewById(R.id.btnInsertTen);
         btnGetChange = view.findViewById(R.id.btnGetChange);
     }
+    @SuppressLint("SetTextI18n")
     private void fillingViews(){
         /*filling*/
         tvAmountInserted.setText(String.valueOf(amountInserted));
@@ -137,9 +139,9 @@ public class MainFragment extends Fragment{
         tvAmountVMCoffeesWithMilk.setText(String.valueOf(amountVMCoffeesWithMilk + "portions"));
         tvAmountVMJuices.setText(String.valueOf(amountVMJuices + "portions"));
         tvAmountUserCoffees.setText(String.valueOf(amountUserCoffees + "portions"));
-        tvAmountUserTeas.setText(String.valueOf(amountUserTeas));
-        tvAmountUserCoffeesWithMilk.setText(String.valueOf(amountUserCoffeesWithMilk));
-        tvAmountUserJuices.setText(String.valueOf(amountUserJuices));
+        tvAmountUserTeas.setText(String.valueOf(amountUserTeas) + "portions");
+        tvAmountUserCoffeesWithMilk.setText(String.valueOf(amountUserCoffeesWithMilk) + "portions");
+        tvAmountUserJuices.setText(String.valueOf(amountUserJuices) + "portions");
         tvAmountUserOnes.setText(String.valueOf(amountUserOnes));
         tvAmountUserTwos.setText(String.valueOf(amountUserTwos));
         tvAmountUserFives.setText(String.valueOf(amountUserFives));
@@ -152,6 +154,7 @@ public class MainFragment extends Fragment{
 
     private void logic(){
         final View.OnClickListener listener = new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 int id = v.getId();
@@ -209,8 +212,8 @@ public class MainFragment extends Fragment{
                             amountInserted -= 13;
                             amountVMTeas -= 1;
                             amountUserTeas += 1;
-                            tvAmountUserTeas.setText(String .valueOf(amountUserTeas));
-                            tvAmountVMTeas.setText(String .valueOf(amountVMTeas));
+                            tvAmountUserTeas.setText(String.valueOf(amountUserTeas) + "portions");
+                            tvAmountVMTeas.setText(String.valueOf(amountVMTeas) + "portions");
                             tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
                         else if(amountInserted < 13) {
@@ -223,8 +226,8 @@ public class MainFragment extends Fragment{
                             amountInserted -= 18;
                             amountVMCoffees -= 1;
                             amountUserCoffees += 1;
-                            tvAmountUserCoffees.setText(String .valueOf(amountUserCoffees));
-                            tvAmountVMCoffees.setText(String .valueOf(amountVMCoffees) + "portions");
+                            tvAmountUserCoffees.setText(String.valueOf(amountUserCoffees) + "portions");
+                            tvAmountVMCoffees.setText(String.valueOf(amountVMCoffees) + "portions");
                             tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
                         else if(amountInserted < 18) {
@@ -237,8 +240,8 @@ public class MainFragment extends Fragment{
                             amountInserted -= 21;
                             amountVMCoffeesWithMilk -= 1;
                             amountUserCoffeesWithMilk += 1;
-                            tvAmountUserCoffeesWithMilk.setText(String .valueOf(amountUserCoffeesWithMilk));
-                            tvAmountVMCoffeesWithMilk.setText(String .valueOf(amountVMCoffeesWithMilk) + "portions");
+                            tvAmountUserCoffeesWithMilk.setText(String.valueOf(amountUserCoffeesWithMilk) + "portions");
+                            tvAmountVMCoffeesWithMilk.setText(String.valueOf(amountVMCoffeesWithMilk) + "portions");
                             tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
                         else if(amountInserted < 21) {
@@ -251,8 +254,8 @@ public class MainFragment extends Fragment{
                             amountInserted -= 35;
                             amountVMJuices -= 1;
                             amountUserJuices += 1;
-                            tvAmountUserJuices.setText(String .valueOf(amountUserJuices));
-                            tvAmountVMJuices.setText(String .valueOf(amountVMJuices) + "portions");
+                            tvAmountUserJuices.setText(String.valueOf(amountUserJuices) + "portions");
+                            tvAmountVMJuices.setText(String.valueOf(amountVMJuices) + "portions");
                             tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
                         else if(amountInserted < 35) {
