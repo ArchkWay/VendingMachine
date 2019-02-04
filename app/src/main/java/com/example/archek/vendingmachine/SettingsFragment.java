@@ -11,9 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,14 +19,10 @@ import java.util.List;
 public class SettingsFragment extends Fragment{
     private SharedPreferences prefs;
     private SharedPreferences.Editor prefsEditor;
-    TextView tvSetAmountVMOnes;
-    TextView tvSetAmountVMTwos;
-    TextView tvSetAmountVMFives;
-    TextView tvSetAmountVMTens;
-    Spinner spSettingsOnes;
-    Spinner spSettingsTwos;
-    Spinner spSettingsFives;
-    Spinner spSettingsTens;
+    private Spinner spSettingsOnes;
+    private Spinner spSettingsTwos;
+    private Spinner spSettingsFives;
+    private Spinner spSettingsTens;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -39,10 +33,6 @@ public class SettingsFragment extends Fragment{
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences( getContext() );
         prefsEditor = prefs.edit();
-        tvSetAmountVMOnes = view.findViewById(R.id.tvSetAmountVMOnes);
-        tvSetAmountVMTwos = view.findViewById(R.id.tvSetAmountVMTwos);
-        tvSetAmountVMFives = view.findViewById(R.id.tvSetAmountVMFives);
-        tvSetAmountVMTens = view.findViewById(R.id.tvSetAmountVMTens);
         spSettingsOnes = view.findViewById(R.id.spSettingsOnes);
         spSettingsTwos = view.findViewById(R.id.spSettingsTwos);
         spSettingsFives = view.findViewById(R.id.spSettingsFives);

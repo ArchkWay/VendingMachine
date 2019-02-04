@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,53 +17,52 @@ import android.widget.Toast;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainFragment extends Fragment{
-    ConstraintLayout clMain;
-    TextView tvAmountIncerted;
-    TextView tvAmountVMTeas;
-    TextView tvAmountVMCoffies;
-    TextView tvAmountVMCoffiesWithMilk;
-    TextView tvAmountVMJuices;
-    TextView tvAmountUserCoffies;
-    TextView tvAmountUserTeas;
-    TextView tvAmountUserCoffiesWithMilk;
-    TextView tvAmountUserJuices;
-    TextView tvAmountUserOnes;
-    TextView tvAmountUserTwos;
-    TextView tvAmountUserFives;
-    TextView tvAmountUserTens;
-    TextView tvAmountVMOnes;
-    TextView tvAmountVMTwos;
-    TextView tvAmountVMFives;
-    TextView tvAmountVMTens;
+    private TextView tvAmountInserted;
+    private TextView tvAmountVMTeas;
+    private TextView tvAmountVMCoffees;
+    private TextView tvAmountVMCoffeesWithMilk;
+    private TextView tvAmountVMJuices;
+    private TextView tvAmountUserCoffees;
+    private TextView tvAmountUserTeas;
+    private TextView tvAmountUserCoffeesWithMilk;
+    private TextView tvAmountUserJuices;
+    private TextView tvAmountUserOnes;
+    private TextView tvAmountUserTwos;
+    private TextView tvAmountUserFives;
+    private TextView tvAmountUserTens;
+    private TextView tvAmountVMOnes;
+    private TextView tvAmountVMTwos;
+    private TextView tvAmountVMFives;
+    private TextView tvAmountVMTens;
 
 
-    Button btnBuyTea;
-    Button btnBuyCoffie;
-    Button btnBuyCoffieWithMilk;
-    Button btnBuyJuice;
-    Button btnIncertOne;
-    Button btnIncertTwo;
-    Button btnIncertFive;
-    Button btnIncertTen;
-    Button btnGetChange;
+    private Button btnBuyTea;
+    private Button btnBuyCoffee;
+    private Button btnBuyCoffeeWithMilk;
+    private Button btnBuyJuice;
+    private Button btnInsertOne;
+    private Button btnInsertTwo;
+    private Button btnInsertFive;
+    private Button btnInsertTen;
+    private Button btnGetChange;
 
-    int amountIncerted;
-    int amountVMTeas;
-    int amountVMCoffies;
-    int amountVMCoffiesWithMilk;
-    int amountVMJuices;
-    int amountUserCoffies;
-    int amountUserTeas;
-    int amountUserCoffiesWithMilk;
-    int amountUserJuices;
-    int amountUserOnes;
-    int amountUserTwos;
-    int amountUserFives;
-    int amountUserTens;
-    int amountVMOnes;
-    int amountVMTwos;
-    int amountVMFives;
-    int amountVMTens;
+    private int amountInserted;
+    private int amountVMTeas;
+    private int amountVMCoffees;
+    private int amountVMCoffeesWithMilk;
+    private int amountVMJuices;
+    private int amountUserCoffees;
+    private int amountUserTeas;
+    private int amountUserCoffeesWithMilk;
+    private int amountUserJuices;
+    private int amountUserOnes;
+    private int amountUserTwos;
+    private int amountUserFives;
+    private int amountUserTens;
+    private int amountVMOnes;
+    private int amountVMTwos;
+    private int amountVMFives;
+    private int amountVMTens;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -73,19 +71,44 @@ public class MainFragment extends Fragment{
 
     @Override
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState){
+        initiateSettings();
+        initViews(view);
+        fillingViews();
+        logic();
+    }
+
+    private void initiateSettings(){
+        /* flexible settings */
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         amountVMOnes = preferences.getInt(PrefsConst.SETTINGS_ONES_AMOUNT,PrefsConst.SETTING_DEFAULT_AMOUNT);
         amountVMTwos = preferences.getInt(PrefsConst.SETTINGS_TWOS_AMOUNT,PrefsConst.SETTING_DEFAULT_AMOUNT);
         amountVMFives = preferences.getInt(PrefsConst.SETTINGS_FIVES_AMOUNT,PrefsConst.SETTING_DEFAULT_AMOUNT);
         amountVMTens = preferences.getInt(PrefsConst.SETTINGS_TENS_AMOUNT,PrefsConst.SETTING_DEFAULT_AMOUNT);
-        tvAmountIncerted = view.findViewById(R.id.tvAmountIncerted);
+        /*preinstalled settings*/
+        amountInserted = 0;
+        amountVMTeas = 10;
+        amountVMCoffees = 20;
+        amountVMCoffeesWithMilk = 20;
+        amountVMJuices = 15;
+        amountUserCoffees = 0;
+        amountUserTeas = 0;
+        amountUserCoffeesWithMilk = 0;
+        amountUserJuices = 0;
+        amountUserOnes = 10;
+        amountUserTwos = 30;
+        amountUserFives = 20;
+        amountUserTens = 15;
+    }
+    private void initViews(View view) {
+        /*views*/
+        tvAmountInserted = view.findViewById(R.id.tvAmountInserted);
         tvAmountVMTeas = view.findViewById(R.id.tvAmountVMTeas);
-        tvAmountVMCoffies = view.findViewById(R.id.tvAmountVMCoffies);
-        tvAmountVMCoffiesWithMilk = view.findViewById(R.id.tvAmountVMCoffiesWithMilk);
+        tvAmountVMCoffees = view.findViewById(R.id.tvAmountVMCoffees);
+        tvAmountVMCoffeesWithMilk = view.findViewById(R.id.tvAmountVMCoffeesWithMilk);
         tvAmountVMJuices = view.findViewById(R.id.tvAmountVMJuices);
-        tvAmountUserCoffies = view.findViewById(R.id.tvCountCoffies);
+        tvAmountUserCoffees = view.findViewById(R.id.tvCountCoffees);
         tvAmountUserTeas = view.findViewById(R.id.tvCountTeas);
-        tvAmountUserCoffiesWithMilk = view.findViewById(R.id.tvCountCoffiesWithMilk);
+        tvAmountUserCoffeesWithMilk = view.findViewById(R.id.tvCountCoffeesWithMilk);
         tvAmountUserJuices = view.findViewById(R.id.tvCountJuices);
         tvAmountUserOnes = view.findViewById(R.id.tvCountOnes);
         tvAmountUserTwos = view.findViewById(R.id.tvCountTwos);
@@ -97,37 +120,25 @@ public class MainFragment extends Fragment{
         tvAmountVMTens = view.findViewById(R.id.tvVMCountTens);
 
         btnBuyTea = view.findViewById(R.id.btnTea);
-        btnBuyCoffie = view.findViewById(R.id.btnCoffie);
-        btnBuyCoffieWithMilk = view.findViewById(R.id.btnCoffieWithMilk);
+        btnBuyCoffee = view.findViewById(R.id.btnCoffee);
+        btnBuyCoffeeWithMilk = view.findViewById(R.id.btnCoffeeWithMilk);
         btnBuyJuice = view.findViewById(R.id.btnJuice);
-        btnIncertOne = view.findViewById(R.id.btnIncertOne);
-        btnIncertTwo = view.findViewById(R.id.btnIncertTwo);
-        btnIncertFive = view.findViewById(R.id.btnIncertFive);
-        btnIncertTen = view.findViewById(R.id.btnIncertTen);
+        btnInsertOne = view.findViewById(R.id.btnInsertOne);
+        btnInsertTwo = view.findViewById(R.id.btnInsertTwo);
+        btnInsertFive = view.findViewById(R.id.btnInsertFive);
+        btnInsertTen = view.findViewById(R.id.btnInsertTen);
         btnGetChange = view.findViewById(R.id.btnGetChange);
-
-        amountIncerted = 0;
-        amountVMTeas = 10;
-        amountVMCoffies = 20;
-        amountVMCoffiesWithMilk = 20;
-        amountVMJuices = 15;
-        amountUserCoffies = 0;
-        amountUserTeas = 0;
-        amountUserCoffiesWithMilk = 0;
-        amountUserJuices = 0;
-        amountUserOnes = 10;
-        amountUserTwos = 30;
-        amountUserFives = 20;
-        amountUserTens = 15;
-
-        tvAmountIncerted.setText(String.valueOf(amountIncerted));
-        tvAmountVMTeas.setText(String.valueOf(amountVMTeas));
-        tvAmountVMCoffies.setText(String.valueOf(amountVMCoffies));
-        tvAmountVMCoffiesWithMilk.setText(String.valueOf(amountVMCoffiesWithMilk));
-        tvAmountVMJuices.setText(String.valueOf(amountVMJuices));
-        tvAmountUserCoffies.setText(String.valueOf(amountUserCoffies));
+    }
+    private void fillingViews(){
+        /*filling*/
+        tvAmountInserted.setText(String.valueOf(amountInserted));
+        tvAmountVMTeas.setText(String.valueOf(amountVMTeas + "portions"));
+        tvAmountVMCoffees.setText(String.valueOf(amountVMCoffees + "portions"));
+        tvAmountVMCoffeesWithMilk.setText(String.valueOf(amountVMCoffeesWithMilk + "portions"));
+        tvAmountVMJuices.setText(String.valueOf(amountVMJuices + "portions"));
+        tvAmountUserCoffees.setText(String.valueOf(amountUserCoffees + "portions"));
         tvAmountUserTeas.setText(String.valueOf(amountUserTeas));
-        tvAmountUserCoffiesWithMilk.setText(String.valueOf(amountUserCoffiesWithMilk));
+        tvAmountUserCoffeesWithMilk.setText(String.valueOf(amountUserCoffeesWithMilk));
         tvAmountUserJuices.setText(String.valueOf(amountUserJuices));
         tvAmountUserOnes.setText(String.valueOf(amountUserOnes));
         tvAmountUserTwos.setText(String.valueOf(amountUserTwos));
@@ -137,112 +148,114 @@ public class MainFragment extends Fragment{
         tvAmountVMTwos.setText(String.valueOf(amountVMTwos));
         tvAmountVMFives.setText(String.valueOf(amountVMFives));
         tvAmountVMTens.setText(String.valueOf(amountVMTens));
+    }
 
+    private void logic(){
         final View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int id = v.getId();
                 switch (id){
-                    case R.id.btnIncertOne:
+                    case R.id.btnInsertOne:
                         if(amountUserOnes >= 1) {
-                            amountIncerted += 1;
+                            amountInserted += 1;
                             amountUserOnes -= 1;
                             amountVMOnes += 1;
 
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                             tvAmountUserOnes.setText(String.valueOf(amountUserOnes));
                             tvAmountVMOnes.setText(String.valueOf(amountVMOnes));
                         }
                         else Toast.makeText(getContext(), R.string.not_coins, LENGTH_SHORT).show();
                         break;
-                    case R.id.btnIncertTwo:
+                    case R.id.btnInsertTwo:
                         if(amountUserTwos >= 1) {
-                            amountIncerted += 2;
+                            amountInserted += 2;
                             amountUserTwos -= 1;
                             amountVMTwos += 1;
 
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                             tvAmountUserTwos.setText(String.valueOf(amountUserTwos));
                             tvAmountVMTwos.setText(String.valueOf(amountVMTwos));
                         }
                         else Toast.makeText(getContext(), R.string.not_coins, LENGTH_SHORT).show();
                         break;
-                    case R.id.btnIncertFive:
+                    case R.id.btnInsertFive:
                         if(amountUserFives >= 1) {
-                            amountIncerted += 5;
+                            amountInserted += 5;
                             amountUserFives -= 1;
                             amountVMFives += 1;
 
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                             tvAmountUserFives.setText(String.valueOf(amountUserFives));
                             tvAmountVMFives.setText(String.valueOf(amountVMFives));
                         }
                         else Toast.makeText(getContext(), R.string.not_coins, LENGTH_SHORT).show();
                         break;
-                    case R.id.btnIncertTen:
+                    case R.id.btnInsertTen:
                         if(amountUserTens >= 1) {
-                            amountIncerted += 10;
+                            amountInserted += 10;
                             amountUserTens -= 1;
                             amountVMTens += 1;
 
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                             tvAmountUserTens.setText(String.valueOf(amountUserTens));
                             tvAmountVMTens.setText(String.valueOf(amountVMTens));
                         }
                         else Toast.makeText(getContext(), R.string.not_coins, LENGTH_SHORT).show();
                         break;
                     case R.id.btnTea:
-                        if(amountIncerted >= 13 && amountVMTeas >= 1) {
-                            amountIncerted -= 13;
+                        if(amountInserted >= 13 && amountVMTeas >= 1) {
+                            amountInserted -= 13;
                             amountVMTeas -= 1;
                             amountUserTeas += 1;
                             tvAmountUserTeas.setText(String .valueOf(amountUserTeas));
                             tvAmountVMTeas.setText(String .valueOf(amountVMTeas));
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
-                        else if(amountIncerted < 13) {
+                        else if(amountInserted < 13) {
                             Toast.makeText(getContext(), R.string.more_coins, LENGTH_SHORT).show();
                         }
                         else Toast.makeText(getContext(), R.string.no_drink, LENGTH_SHORT).show();
                         break;
-                    case R.id.btnCoffie:
-                        if(amountIncerted >= 18 && amountVMCoffies >= 1) {
-                            amountIncerted -= 18;
-                            amountVMCoffies -= 1;
-                            amountUserCoffies += 1;
-                            tvAmountUserCoffies.setText(String .valueOf(amountUserCoffies));
-                            tvAmountVMCoffies.setText(String .valueOf(amountVMCoffies));
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                    case R.id.btnCoffee:
+                        if(amountInserted >= 18 && amountVMCoffees >= 1) {
+                            amountInserted -= 18;
+                            amountVMCoffees -= 1;
+                            amountUserCoffees += 1;
+                            tvAmountUserCoffees.setText(String .valueOf(amountUserCoffees));
+                            tvAmountVMCoffees.setText(String .valueOf(amountVMCoffees) + "portions");
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
-                        else if(amountIncerted < 18) {
+                        else if(amountInserted < 18) {
                             Toast.makeText(getContext(), R.string.more_coins, LENGTH_SHORT).show();
                         }
                         else Toast.makeText(getContext(), R.string.no_drink, LENGTH_SHORT).show();
                         break;
-                    case R.id.btnCoffieWithMilk:
-                        if(amountIncerted >= 21 && amountVMCoffiesWithMilk >= 1) {
-                            amountIncerted -= 21;
-                            amountVMCoffiesWithMilk -= 1;
-                            amountUserCoffiesWithMilk += 1;
-                            tvAmountUserCoffiesWithMilk.setText(String .valueOf(amountUserCoffiesWithMilk));
-                            tvAmountVMCoffiesWithMilk.setText(String .valueOf(amountVMCoffiesWithMilk));
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                    case R.id.btnCoffeeWithMilk:
+                        if(amountInserted >= 21 && amountVMCoffeesWithMilk >= 1) {
+                            amountInserted -= 21;
+                            amountVMCoffeesWithMilk -= 1;
+                            amountUserCoffeesWithMilk += 1;
+                            tvAmountUserCoffeesWithMilk.setText(String .valueOf(amountUserCoffeesWithMilk));
+                            tvAmountVMCoffeesWithMilk.setText(String .valueOf(amountVMCoffeesWithMilk) + "portions");
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
-                        else if(amountIncerted < 21) {
+                        else if(amountInserted < 21) {
                             Toast.makeText(getContext(), R.string.more_coins, LENGTH_SHORT).show();
                         }
                         else Toast.makeText(getContext(), R.string.no_drink, LENGTH_SHORT).show();
                         break;
                     case R.id.btnJuice:
-                        if(amountIncerted >= 35 && amountVMJuices >= 1) {
-                            amountIncerted -= 35;
+                        if(amountInserted >= 35 && amountVMJuices >= 1) {
+                            amountInserted -= 35;
                             amountVMJuices -= 1;
                             amountUserJuices += 1;
                             tvAmountUserJuices.setText(String .valueOf(amountUserJuices));
-                            tvAmountVMJuices.setText(String .valueOf(amountVMJuices));
-                            tvAmountIncerted.setText(String.valueOf(amountIncerted));
+                            tvAmountVMJuices.setText(String .valueOf(amountVMJuices) + "portions");
+                            tvAmountInserted.setText(String.valueOf(amountInserted));
                         }
-                        else if(amountIncerted < 35) {
+                        else if(amountInserted < 35) {
                             Toast.makeText(getContext(), R.string.more_coins, LENGTH_SHORT).show();
                         }
                         else Toast.makeText(getContext(), R.string.no_drink, LENGTH_SHORT).show();
@@ -252,10 +265,10 @@ public class MainFragment extends Fragment{
                         int tempFives;
                         int tempTwos;
                         int ost;
-                        tempTens = amountIncerted/10;
+                        tempTens = amountInserted/10;
                         amountUserTens += tempTens;
                         amountVMTens -= tempTens;
-                        ost = amountIncerted%10;
+                        ost = amountInserted%10;
                         tempFives = ost/5;
                         amountUserFives += tempFives;
                         amountVMFives -= tempFives;
@@ -266,31 +279,30 @@ public class MainFragment extends Fragment{
                         ost = ost%2;
                         amountUserOnes += ost;
                         amountVMOnes -= ost;
-                        amountIncerted = 0;
+                        amountInserted = 0;
 
-                        tvAmountUserOnes.setText(String .valueOf(amountUserOnes));
-                        tvAmountUserTwos.setText(String .valueOf(amountUserTwos));
-                        tvAmountUserFives.setText(String .valueOf(amountUserFives));
-                        tvAmountUserTens.setText(String .valueOf(amountUserTens));
-                        tvAmountIncerted.setText(String .valueOf(amountIncerted));
-                        tvAmountVMTens.setText(String .valueOf(amountVMTens));
-                        tvAmountVMFives.setText(String .valueOf(amountVMFives));
-                        tvAmountVMTwos.setText(String .valueOf(amountVMTwos));
-                        tvAmountVMOnes.setText(String .valueOf(amountVMOnes));
+                        tvAmountUserOnes.setText(String.valueOf(amountUserOnes));
+                        tvAmountUserTwos.setText(String.valueOf(amountUserTwos));
+                        tvAmountUserFives.setText(String.valueOf(amountUserFives));
+                        tvAmountUserTens.setText(String.valueOf(amountUserTens));
+                        tvAmountInserted.setText(String.valueOf(amountInserted));
+                        tvAmountVMTens.setText(String.valueOf(amountVMTens));
+                        tvAmountVMFives.setText(String.valueOf(amountVMFives));
+                        tvAmountVMTwos.setText(String.valueOf(amountVMTwos));
+                        tvAmountVMOnes.setText(String.valueOf(amountVMOnes));
                         break;
-                };
+                }
             }
         };
-        btnIncertOne.setOnClickListener(listener);
-        btnIncertTwo.setOnClickListener(listener);
-        btnIncertFive.setOnClickListener(listener);
-        btnIncertTen.setOnClickListener(listener);
-
+        btnInsertOne.setOnClickListener(listener);
+        btnInsertTwo.setOnClickListener(listener);
+        btnInsertFive.setOnClickListener(listener);
+        btnInsertTen.setOnClickListener(listener);
         btnBuyTea.setOnClickListener(listener);
-        btnBuyCoffie.setOnClickListener(listener);
-        btnBuyCoffieWithMilk.setOnClickListener(listener);
+        btnBuyCoffee.setOnClickListener(listener);
+        btnBuyCoffeeWithMilk.setOnClickListener(listener);
         btnBuyJuice.setOnClickListener(listener);
-
         btnGetChange.setOnClickListener(listener);
     }
+
 }

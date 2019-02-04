@@ -1,6 +1,6 @@
 package com.example.archek.vendingmachine;
 
-public interface PrefsConst {
+interface PrefsConst {
 
     int SETTING_DEFAULT_AMOUNT = 100;
     String SETTINGS_ONES_AMOUNT = "SETTINGS_ONES_AMOUNT";
